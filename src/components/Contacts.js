@@ -1,13 +1,24 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
-export const Contacts = () => {
+export const Contacts = (props) => {
+
+    const {name,email,number} = props
   return (
-    <div>
-        <h4> Jonh Doe</h4>
+          <div>
+         <h4>{name}</h4>
         <ul>
-            <li>Email : iknowsaint@gmail.com</li>
-            <li>Phone: 08066658213</li>
+            <li> email:{email}</li>
+            <li>number:{number}</li>
         </ul>
-    </div>
+      </div>
   )
 }
+
+    Contacts.prototype={
+        name:PropTypes.string.isRequired,
+        email:PropTypes.string.isRequired,
+        number:PropTypes.string.isRequired
+    }
+
+
