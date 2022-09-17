@@ -3,13 +3,20 @@ import React, { Component } from 'react';
 
 
 class Contact extends Component {
-    state = {};
+    state = {
+        showContactInfo: true
+    };
 
     onShowClick = e => {
-        console.log(e);
+        this.setState({
+            showContactInfo:
+                !this.state.showContactInfo
+        })
     }
     render() {
-        const { name, email, phone } = this.props.contact
+        const { name, email, phone } = this.props.contact;
+        const { showContactInfo } = this.state;
+
         return (
             <div>
                 <div className='card-body m3-3'>
@@ -17,11 +24,12 @@ class Contact extends Component {
                         <i onClick={this.onShowClick}
                             className='fas fa-sort-down' />
                     </h4>
-                    <ul className='list-group'>
-                        <li className='list-group-item'>
-                            email:{email}</li>
-                        <li className='list-group-item'>phone:{phone}</li>
-                    </ul>
+                    {showContactInfo ? (
+                        <ul className='list-group'>
+                            <li className='list-group-item'>
+                                email:{email}</li>
+                            <li className='list-group-item'>phone:{phone}</li>
+                        </ul>) : null}
                 </div>
             </div>
         )
