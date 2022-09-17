@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export const Contacts = (props) => {
 
-    const {name,email,phone} = props.contacts;
+    const {name,email,phone} = props;
   return (
           <div className='card-body m3-3'>
          <h4>{name}</h4>
