@@ -5,11 +5,13 @@ export const Contacts = (props) => {
 
     const {name,email,number} = props
   return (
-          <div>
+          <div className='card-body m3-3'>
          <h4>{name}</h4>
-        <ul>
-            <li> email:{email}</li>
-            <li>number:{number}</li>
+        <ul className='list-group'>
+            <li className='list-group-item'> 
+            email:{email}</li>
+            <li className='list-group-item'>
+            number:{number}</li>
         </ul>
       </div>
   )
