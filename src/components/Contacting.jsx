@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Contacts } from './Contacts';
-
+import Contact from './Contact';
 
 
 class Contacting extends Component {
@@ -35,12 +34,9 @@ class Contacting extends Component {
         return (
             <div>
                 {contacts.map((contacts) =>
-                    <Contacts
+                    <Contact
                         key={contacts.id}
-                        name={
-                            contacts.name}
-                        email={contacts.email}
-                        phone={contacts.phone}
+                        contact={contacts}
                     />
                 )}
             </div>
