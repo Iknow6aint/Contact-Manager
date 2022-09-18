@@ -1,6 +1,18 @@
 import React,{Component} from 'react';
 
 const Context =React.createContext();
+const reducer = (state,action)=>{
+    switch(action.type){
+        case'DELETE_CONTACT':
+        return{
+            ...state,
+            contacts:state.contacts.filter(contacts=>
+                 contacts.id !== action.payload)
+        };
+        default:
+            return state;
+    }
+};
 
 export class Provider extends Component{
     state={
@@ -22,7 +34,11 @@ export class Provider extends Component{
                     email: 'iknowsjames',
                     phone: '555-555-541'
                 }
-            ]
+            ],
+            dispatch:action=>{
+                this.setState(state =>
+                reducer(state,action))
+            }
     };
     render(){
         return(
