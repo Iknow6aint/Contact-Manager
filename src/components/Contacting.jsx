@@ -1,34 +1,10 @@
 import React, { Component } from 'react';
+import { Consumer } from '../context';
 import Contact from './Contact';
 
 
+
 class Contacting extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            contacts: [
-                {
-                    id: 1,
-                    name: 'john',
-                    email: 'iknowsaint',
-                    phone: '555-555-523'
-                },
-                {
-                    id: 2,
-                    name: 'saint',
-                    email: 'iamsaint',
-                    phone: '555-555-555'
-                }, {
-                    id: 3,
-                    name: 'deli',
-                    email: 'iknowsjames',
-                    phone: '555-555-541'
-                }
-            ]
-        }
-    }
-
     deleteContact = (id) => {
         const { contacts } = this.state;
 
@@ -40,19 +16,26 @@ class Contacting extends Component {
     }
 
     render() {
-        const { contacts } = this.state;
+
         return (
-            <React.Fragment>
-                {contacts.map((contacts) =>
-                    <Contact
-                        key={contacts.id}
-                        contact={contacts}
-                        deleteClickHandler={this.deleteContact.bind
-                            (this, contacts.id)
-                        }
-                    />
-                )}
-            </React.Fragment>
+            <Consumer>
+                {value => {
+                    const { contacts } = value
+                    return (
+                        <React.Fragment>
+                            {contacts.map((contact) =>
+                                <Contact
+                                    key={contact.id}
+                                    contact={contact}
+                                    deleteClickHandler={this.deleteContact.bind
+                                        (this, contact.id)
+                                    }
+                                />
+                            )}
+                        </React.Fragment>
+                    )
+                }}
+            </Consumer>
         )
     }
 }
