@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Head from './components/Head';
+import Head from './components/layout/Head';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Contacting from './components/Contacting';
+import Contacting from './components/contacts/Contacting';
 import { Provider } from './context';
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
         <div className='Container'>
             <Contacting/>
         </div>
-
     </div>
     </Provider>
   );
