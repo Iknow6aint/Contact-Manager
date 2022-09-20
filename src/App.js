@@ -14,7 +14,7 @@ function App() {
         <Head branding="Contact Manager"/>
         <div className='Container'>
             <AddContacts/>
-            {/* <Contacting/> */}
+            <Contacting/>
         </div>
     </div>
     </Provider>
