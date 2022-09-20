@@ -2,34 +2,28 @@ import React, { Component } from 'react'
 
 export default class AddContacts extends Component {
 
-
-    constructor(props) {
-        super(props);
-
-        this.nameInput = React.createRef();
-        this.emailInput = React.createRef();
-        this.phoneInput = React.createRef()
+    state = {
+        name: '',
+        email: '',
+        phone: '',
     }
-
     onSubmit = e => {
         e.preventDefault();
-        const contact = {
-            name: this.nameInput.current.value,
-            email: this.emailInput.current.value,
-            phone: this.phoneInput.current.value
-        }
-
-        console.log(contact);
+        console.log(this.state);
     }
 
-    static defaultProps = {
-        name: 'iknowsaint',
-        email: 'saintmoses@gmail.com',
-        phone: '444-444-444'
+    onChange = e => {
+        this.setState({
+            [e.target.name]:
+                e.target.value
+        })
     }
-
+    // this.setState({
+    //     [e.target.name]:
+    //         e.target.value
+    // });
     render() {
-        const { name, email, phone } = this.props;
+        const { name, email, phone } = this.state;
         return (
             <div className='card mb-3'>
                 <div className="card-header">
@@ -44,9 +38,8 @@ export default class AddContacts extends Component {
                                 name='name'
                                 className="form-control form-control-lg"
                                 placeholder="Enter Name"
-                                defaultValue={name}
-                                ref={this.nameInput}
-
+                                value={name}
+                                onChange={this.onChange}
                             />
                         </div>
                         <div className="form-group">
@@ -56,26 +49,25 @@ export default class AddContacts extends Component {
                                 name='email'
                                 className="form-control form-control-lg"
                                 placeholder="Enter Email"
-                                defaultValue={email}
-                                ref={this.emailInput}
-
+                                value={email}
+                                onChange={this.onChange}
                             />
                         </div>
                         <div className="form-group">
                             <label htmlFor="Phone">Phone</label>
-                            <input type='phone'
+                            <input type='number'
                                 name='phone'
                                 className="form-control form-control-lg"
                                 placeholder="Enter Phone"
-                                defaultValue={phone}
-                                ref={this.phoneInput}
+                                value={phone}
+                                onChange={this.onChange}
                             />
                         </div>
-                        <input type="submit"
-                            value="Add Contact"
-                            className='btn btn-light btn-block'
-                        />
                     </form>
+                    <input type="submit"
+                        value="Add Contact"
+                        className='btn btn-light btn-block'
+                    />
                 </div>
             </div>
         )
