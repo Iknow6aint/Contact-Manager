@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
 import { v4 as uuidv4 } from 'uuid';
+import TextInput from '../layout/TextInput';
+
 
 export default class AddContacts extends Component {
 
@@ -53,40 +55,31 @@ export default class AddContacts extends Component {
                                 <form onSubmit={this.onSubmit.bind(
                                     this, dispatch
                                 )}>
-                                    <div className="form-group">
-                                        <label htmlFor="name">Name</label>
-                                        <input
-                                            type='text'
-                                            name='name'
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter Name"
-                                            alue={name}
-                                            onChange={this.onChange}
 
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="Email">Email</label>
-                                        <input
-                                            type='email'
-                                            name='email'
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter Email"
-                                            alue={email}
-                                            onChange={this.onChange}
+                                    <TextInput
 
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="Phone">Phone</label>
-                                        <input type='phone'
-                                            name='phone'
-                                            className="form-control form-control-lg"
-                                            placeholder="Enter Phone"
-                                            value={phone}
-                                            onChange={this.onChange}
-                                        />
-                                    </div>
+                                        label='Name'
+                                        name='name'
+                                        placeholder='Enter name'
+                                        value={name}
+                                        onChange={this.onChange}
+                                    />
+                                    <TextInput
+
+                                        label='Email'
+                                        name='email'
+                                        placeholder='Enter email'
+                                        value={email}
+                                        onChange={this.onChange}
+                                    />
+                                    <TextInput
+
+                                        label='Phone'
+                                        name='phone'
+                                        placeholder='Enter phone'
+                                        value={phone}
+                                        onChange={this.onChange}
+                                    />
                                     <input type="submit"
                                         value="Add Contact"
                                         className='btn btn-light btn-block'
