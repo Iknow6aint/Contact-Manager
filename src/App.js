@@ -11,6 +11,8 @@ import {
   Route,
 } from "react-router-dom";
 import About from './components/pages/About';
+import NotFound from './components/pages/NotFound';
+
 
 
 
@@ -26,8 +28,10 @@ function App() {
                 {<AddContacts/>} />
                 <Route exact path='/' element= 
                 {<Contacting/>} />
-                <Route exact path='/about/:id' element= 
+                <Route exact path='/about/' element= 
                 {<About/>} />
+                <Route  exact path="*" element= 
+                {<NotFound/>} />
             </Routes>
         </div>
     </div>
