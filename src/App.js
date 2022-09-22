@@ -9,7 +9,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 import About from './components/pages/About';
 
@@ -27,7 +26,7 @@ function App() {
                 {<AddContacts/>} />
                 <Route exact path='/' element= 
                 {<Contacting/>} />
-                <Route exact path='/about' element= 
+                <Route exact path='/about/:id' element= 
                 {<About/>} />
             </Routes>
         </div>

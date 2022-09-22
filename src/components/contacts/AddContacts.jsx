@@ -55,8 +55,9 @@ export default class AddContacts extends Component {
             name: '',
             email: '',
             phone: '',
+            errors: {},
         })
-        console.log(newContact);
+        this.props.history.push('/');
     }
 
     onChange = e => this.setState({
