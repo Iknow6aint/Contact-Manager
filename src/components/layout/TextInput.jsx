@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
 
 const TextInput = (
     { label,
@@ -7,7 +9,8 @@ const TextInput = (
         value,
         placeholder,
         type,
-        onChange
+        onChange,
+        error
     }
 ) => {
     return (
@@ -16,12 +19,14 @@ const TextInput = (
             <input
                 type={type}
                 name={name}
-                className="form-control form-control-lg"
+                className={classNames("form-control form-control-lg", {
+                    'is-invalid': error
+                })}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-
             />
+            {error && <div className='invalid-feeback'>{error}</div>}
         </div>
     )
 }

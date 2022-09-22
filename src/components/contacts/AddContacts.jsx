@@ -10,17 +10,44 @@ export default class AddContacts extends Component {
         name: '',
         email: '',
         phone: '',
+        errors: {}
     }
 
     onSubmit = (dispatch, e) => {
         e.preventDefault();
         const { name, email, phone } = this.state;
+        //check for errors
+        if (name === '') {
+            this.setState({
+                errors: {
+                    name: 'name is required'
+                }
+            })
+            return
+        }
+        if (email === '') {
+            this.setState({
+                errors: {
+                    email: 'email is required'
+                }
+            })
+            return
+        }
+        if (phone === '') {
+            this.setState({
+                errors: {
+                    phone: 'phone  is required'
+                }
+            })
+            return;
+        }
 
         const newContact = {
             id: uuidv4(),
             name,
             email,
-            phone
+            phone,
+            errors: {}
         }
 
         dispatch({ type: 'ADD_CONTACT', payload: newContact });
@@ -40,7 +67,7 @@ export default class AddContacts extends Component {
 
 
     render() {
-        const { name, email, phone } = this.state;
+        const { name, email, phone, errors } = this.state;
 
         return (
             <Consumer>
@@ -63,6 +90,7 @@ export default class AddContacts extends Component {
                                         placeholder='Enter name'
                                         value={name}
                                         onChange={this.onChange}
+                                        error={errors.name}
                                     />
                                     <TextInput
 
@@ -71,6 +99,7 @@ export default class AddContacts extends Component {
                                         placeholder='Enter email'
                                         value={email}
                                         onChange={this.onChange}
+                                        error={errors.email}
                                     />
                                     <TextInput
 
@@ -79,6 +108,7 @@ export default class AddContacts extends Component {
                                         placeholder='Enter phone'
                                         value={phone}
                                         onChange={this.onChange}
+                                        error={errors.phone}
                                     />
                                     <input type="submit"
                                         value="Add Contact"
