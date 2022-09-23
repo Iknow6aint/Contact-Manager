@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
+import Test from './components/test/Test';
 
 
 
@@ -32,6 +33,8 @@ function App() {
                 {<About/>} />
                 <Route  exact path="*" element= 
                 {<NotFound/>} />
+                 <Route  exact path="/test" element= 
+                {<Test/>} />
             </Routes>
         </div>
     </div>
