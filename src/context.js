@@ -31,10 +31,11 @@ export class Provider extends Component{
             }
     };
 
-    componentDidMount(){
-        axios
+    async componentDidMount(){
+        const res = await axios
         .get("https://jsonplaceholder.typicode.com/users")
-         .then(res=>this.setState({contacts: res.data}))
+
+       this.setState({contacts: res.data})
 
     }
     render(){
