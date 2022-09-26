@@ -13,6 +13,7 @@ import {
 import About from './components/pages/About';
 import NotFound from './components/pages/NotFound';
 import Test from './components/test/Test';
+import EditContacts from './components/contacts/EditContacts';
 
 
 
@@ -27,6 +28,8 @@ function App() {
             <Routes>
                 <Route exact path='/add/contact' element= 
                 {<AddContacts/>} />
+                <Route exact path='contacts/edit/:id' element= 
+                {<EditContacts/>} />
                 <Route exact path='/' element= 
                 {<Contacting/>} />
                 <Route exact path='/about/' element= 
