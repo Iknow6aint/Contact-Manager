@@ -1,11 +1,16 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
 import { v4 as uuidv4 } from 'uuid';
 import TextInput from '../layout/TextInput';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
+// function withParams(Component) {
+//     return props => <Component {...props} params={useParams()} />;
+// }
 
-export default class EditContacts extends Component {
+class EditContacts extends Component {
 
     state = {
         name: '',
@@ -14,8 +19,10 @@ export default class EditContacts extends Component {
         errors: {}
     }
 
+
+
     async componentDidMount() {
-        const { id } = this.props.match.params;
+        const { id } = this.props.params;
         const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
 
         const contact = res.data;
@@ -56,8 +63,18 @@ export default class EditContacts extends Component {
             })
             return;
         }
+        const updateContact = {
+            name,
+            email,
+            phone
+        }
 
+        const { id } = useParams()
 
+        const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, updateContact);
+        dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
+
+        //clear state
         this.setState({
             name: '',
             email: '',
@@ -131,3 +148,11 @@ export default class EditContacts extends Component {
         )
     }
 }
+
+
+export default (props) => (
+    <EditContacts
+        {...props}
+        params={useParams()}
+    />
+);
