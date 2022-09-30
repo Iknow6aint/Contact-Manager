@@ -6,7 +6,7 @@ import Contacting from './components/contacts/Contacting';
 import { Provider } from './context';
 import AddContacts from './components/contacts/AddContacts';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";

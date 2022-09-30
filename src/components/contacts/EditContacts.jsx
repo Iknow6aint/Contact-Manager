@@ -1,7 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { Component } from 'react'
 import { Consumer } from '../../context';
-import { v4 as uuidv4 } from 'uuid';
 import TextInput from '../layout/TextInput';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -10,9 +9,12 @@ import { useParams } from 'react-router-dom';
 //     return props => <Component {...props} params={useParams()} />;
 // }
 
+
 class EditContacts extends Component {
 
+
     state = {
+        id: this.params,
         name: '',
         email: '',
         phone: '',
@@ -22,20 +24,23 @@ class EditContacts extends Component {
 
 
     async componentDidMount() {
-        const { id } = this.props.params;
+        const { id } = this.state
         const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
-
         const contact = res.data;
 
         this.setState({
+            id: this.state.params,
             name: contact.name,
             email: contact.email,
             phone: contact.phone
         })
+
     }
 
 
+
     onSubmit = async (dispatch, e) => {
+        console.log(this.state)
         e.preventDefault();
         const { name, email, phone } = this.state;
         //check for errors
@@ -69,8 +74,8 @@ class EditContacts extends Component {
             phone
         }
 
-        const { id } = useParams()
 
+        const { id } = this.state;
         const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, updateContact);
         dispatch({ type: 'UPDATE_CONTACT', payload: res.data });
 
@@ -84,14 +89,19 @@ class EditContacts extends Component {
         this.props.history.push('/');
     }
 
-    onChange = e => this.setState({
-        [e.target.name]:
-            e.target.value
-    });
+    onChange = (e) => {
+
+        this.setState({
+            [e.target.name]:
+                e.target.value
+
+        });
+    }
 
 
 
     render() {
+
         const { name, email, phone, errors } = this.state;
 
         return (
